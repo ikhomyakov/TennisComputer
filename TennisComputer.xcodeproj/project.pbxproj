@@ -12,6 +12,7 @@
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
+		558B2FF8143C4A1E00C143B3 /* MyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 558B2FF7143C4A1E00C143B3 /* MyViewController.m */; };
 		558C26A3143B1086000FB86E /* MyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 558C26A2143B1086000FB86E /* MyView.m */; };
 /* End PBXBuildFile section */
 
@@ -24,6 +25,8 @@
 		288765FC0DF74451002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* TennisComputer_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TennisComputer_Prefix.pch; sourceTree = "<group>"; };
+		558B2FF6143C4A1E00C143B3 /* MyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyViewController.h; sourceTree = "<group>"; };
+		558B2FF7143C4A1E00C143B3 /* MyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyViewController.m; sourceTree = "<group>"; };
 		558C26A1143B1086000FB86E /* MyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyView.h; sourceTree = "<group>"; };
 		558C26A2143B1086000FB86E /* MyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyView.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* TennisComputer-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "TennisComputer-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
@@ -46,6 +49,8 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				558B2FF6143C4A1E00C143B3 /* MyViewController.h */,
+				558B2FF7143C4A1E00C143B3 /* MyViewController.m */,
 				1D3623240D0F684500981E51 /* TennisComputerAppDelegate.h */,
 				1D3623250D0F684500981E51 /* TennisComputerAppDelegate.m */,
 				558C26A1143B1086000FB86E /* MyView.h */,
@@ -163,6 +168,7 @@
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				1D3623260D0F684500981E51 /* TennisComputerAppDelegate.m in Sources */,
 				558C26A3143B1086000FB86E /* MyView.m in Sources */,
+				558B2FF8143C4A1E00C143B3 /* MyViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

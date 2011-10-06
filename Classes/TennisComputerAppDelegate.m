@@ -1,24 +1,27 @@
-//
-//  TennisComputerAppDelegate.m
-//  TennisComputer
 #import "TennisComputerAppDelegate.h"
-#import "MyView.h"
-
+#import "MyViewController.h"
+#import "UIKit/UIColor.h"
 
 @implementation TennisComputerAppDelegate
 
+@synthesize window;
+@synthesize controller;
+
 
 - (void)applicationDidFinishLaunching:(UIApplication *)application {
-    
-    CGRect rect = [[UIScreen mainScreen] bounds];
-    UIWindow *window = [[UIWindow alloc] initWithFrame:rect];
-    
-	MyView* view = [[MyView alloc] initWithFrame:rect];
-	[window addSubview:view];
-//	[view release];
-    [window makeKeyAndVisible];
-//    [window release];
-    
+	
+	NSLog(@"=== TennisComputerAppDelegate.applicationDidFinishLaunching");
+
+    UIWindow *w = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+	[self setWindow:w];
+	[w release];
+	
+	MyViewController* c = [[MyViewController alloc] initWithNibName:nil bundle:nil];
+	[window setRootViewController:c];
+	[self setController:c];
+	[c release];
+
+	[window makeKeyAndVisible];
 }
 
 
@@ -35,6 +38,8 @@
      Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
      If your application supports background execution, called instead of applicationWillTerminate: when the user quits.
      */
+	NSLog(@"=== TennisComputerAppDelegate.applicationDidEnterBackground");
+
 }
 
 
@@ -42,6 +47,8 @@
     /*
      Called as part of  transition from the background to the inactive state: here you can undo many of the changes made on entering the background.
      */
+	NSLog(@"=== TennisComputerAppDelegate.applicationWillEnterForeground");
+
 }
 
 
@@ -57,6 +64,8 @@
      Called when the application is about to terminate.
      See also applicationDidEnterBackground:.
      */
+	NSLog(@"=== TennisComputerAppDelegate.applicationWillTerminate");
+
 }
 
 
@@ -67,10 +76,14 @@
     /*
      Free up as much memory as possible by purging cached data objects that can be recreated (or reloaded from disk) later.
      */
+	NSLog(@"=== TennisComputerAppDelegate.applicationDidReceiveMemoryWarning");
+
 }
 
 
 - (void)dealloc {
+	[window release];
+	[controller release];
     [super dealloc];
 }
 

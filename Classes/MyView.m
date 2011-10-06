@@ -6,14 +6,43 @@
 
 -(void)drawRect:(CGRect)rect
 {
-	CGContextRef context = UIGraphicsGetCurrentContext();
+	CGContextRef c = UIGraphicsGetCurrentContext();
+
+	UIDeviceOrientation o = [UIDevice currentDevice].orientation;
+	switch (o) {
+		case UIDeviceOrientationPortrait:
+			CGContextSetRGBFillColor(c, 1.0, 1.0, 1.0, 1.0);
+			break;
+		case UIDeviceOrientationPortraitUpsideDown:
+			CGContextSetRGBFillColor(c, 1.0, 1.0, 1.0, 0.75);
+			break;
+		case UIDeviceOrientationLandscapeLeft:
+			CGContextSetRGBFillColor(c, 1.0, 1.0, 0.0, 0.50);
+			break;
+		case UIDeviceOrientationLandscapeRight:
+			CGContextSetRGBFillColor(c, 1.0, 1.0, 1.0, 0.00);
+			break;
+		case UIDeviceOrientationFaceUp:
+		case UIDeviceOrientationFaceDown:
+		default:
+			CGContextSetRGBFillColor(c, 1.0, 0.0, 0.0, 0.5);
+			break;
+	}
 	
-	CGContextSetRGBStrokeColor(context, 1.0, 1.0, 1.0, 1.0);
-	CGContextSetLineWidth(context, 2.0);
+	CGContextSetLineWidth(c, 6.0);
+	CGContextSetRGBStrokeColor(c, 1.0, 1.0, 0.0, 1.0);
 	
-	CGContextMoveToPoint(context, 10.0, 30.0);
-	CGContextAddLineToPoint(context, 310.0, 30.0);
-	CGContextStrokePath(context);
+	CGContextAddRect(c,rect);
+	CGContextFillPath(c);
+	CGContextAddRect(c,rect);
+	CGContextStrokePath(c);
+
+	CGContextSetRGBStrokeColor(c, 0.0, 1.0, 0.0, 1.0);
+		
+	CGContextMoveToPoint(c, 10.0, 30.0);
+	CGContextAddLineToPoint(c, 310.0, 30.0);
+	
+	CGContextStrokePath(c);
 	
 	CGPoint addLines[] =
 	{
@@ -26,8 +55,8 @@
 	};
 	// Bulk call to add lines to the current path.
 	// Equivalent to MoveToPoint(points[0]); for(i=1; i<count; ++i) AddLineToPoint(points[i]);
-	CGContextAddLines(context, addLines, sizeof(addLines)/sizeof(addLines[0]));
-	CGContextStrokePath(context);
+	CGContextAddLines(c, addLines, sizeof(addLines)/sizeof(addLines[0]));
+	CGContextStrokePath(c);
 	
 	// Draw a series of line segments. Each pair of points is a segment
 	CGPoint strokeSegments[] =
@@ -41,7 +70,7 @@
 	};
 	// Bulk call to stroke a sequence of line segments.
 	// Equivalent to for(i=0; i<count; i+=2) { MoveToPoint(point[i]); AddLineToPoint(point[i+1]); StrokePath(); }
-	CGContextStrokeLineSegments(context, strokeSegments, sizeof(strokeSegments)/sizeof(strokeSegments[0]));
+	CGContextStrokeLineSegments(c, strokeSegments, sizeof(strokeSegments)/sizeof(strokeSegments[0]));
 }
 
 @end

@@ -1,0 +1,5 @@
+@interface MyViewController : UIViewController {
+
+}
+
+@end
