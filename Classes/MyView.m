@@ -71,6 +71,28 @@
 	// Bulk call to stroke a sequence of line segments.
 	// Equivalent to for(i=0; i<count; i+=2) { MoveToPoint(point[i]); AddLineToPoint(point[i+1]); StrokePath(); }
 	CGContextStrokeLineSegments(c, strokeSegments, sizeof(strokeSegments)/sizeof(strokeSegments[0]));
+	
+	
+	CGFloat w, h;
+	w = rect.size.width;
+	h = rect.size.height;
+		
+	
+	
+	CGContextTranslateCTM(c, 0, h);
+	CGContextScaleCTM(c, 1, -1);
+	
+	CGAffineTransform t;
+	CGContextSelectFont(c, "Helvetica-Bold", 70, kCGEncodingMacRoman);
+	CGContextSetCharacterSpacing(c,0);
+	CGContextSetTextDrawingMode(c, kCGTextFillStroke);
+	CGContextSetRGBFillColor(c, 1, 1, 0, 1);
+	CGContextSetRGBStrokeColor(c, 1, 0, 0, 1);
+	CGContextSetLineWidth(c, 1.0);
+
+	t =  CGAffineTransformMake(1,0,0,1,0,0);
+	CGContextSetTextMatrix(c, t);
+	CGContextShowTextAtPoint(c, 30, 30, "TENNIS", 6);
 }
 
 @end
