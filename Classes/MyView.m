@@ -1,5 +1,18 @@
 #import "MyView.h"
 
+@implementation UIView (FixedApi)
+
+- (UIViewController *)viewController;
+{
+    id nextResponder = [self nextResponder];
+    if ([nextResponder isKindOfClass:[UIViewController class]]) {
+        return nextResponder;
+    } else {
+        return nil;
+    }
+}
+@end
+
 
 @implementation MyView
 
@@ -29,13 +42,14 @@
 			break;
 	}
 	
-	CGContextSetLineWidth(c, 6.0);
+	CGContextSetLineWidth(c, 0.5);
 	CGContextSetRGBStrokeColor(c, 1.0, 1.0, 0.0, 1.0);
+	CGContextSetRGBFillColor(c, 0.0, 0.0, 0.0, 0.5);
 	
-	CGContextAddRect(c,rect);
-	CGContextFillPath(c);
-	CGContextAddRect(c,rect);
-	CGContextStrokePath(c);
+//	CGContextAddRect(c,rect);
+//	CGContextFillPath(c);
+//	CGContextAddRect(c,rect);
+//	CGContextStrokePath(c);
 
 	CGContextSetRGBStrokeColor(c, 0.0, 1.0, 0.0, 1.0);
 		
@@ -87,7 +101,7 @@
 	CGContextSetCharacterSpacing(c,0);
 	CGContextSetTextDrawingMode(c, kCGTextFillStroke);
 	CGContextSetRGBFillColor(c, 1, 1, 0, 1);
-	CGContextSetRGBStrokeColor(c, 1, 0, 0, 1);
+	CGContextSetRGBStrokeColor(c, 1, 1, 0, 1);
 	CGContextSetLineWidth(c, 1.0);
 
 	t =  CGAffineTransformMake(1,0,0,1,0,0);
