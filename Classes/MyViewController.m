@@ -17,7 +17,8 @@
 	NSLog(@"=== MyViewController.loadView");
 
     MyView *v = [[MyView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-//	[v setBackgroundColor:[UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:0.2]]; 
+//	[v setBackgroundColor:[UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:0.2]];
+	[v setMultipleTouchEnabled:YES];
 	[self setView:v];
     [v release];
 }
@@ -27,6 +28,7 @@
 	 NSLog(@"=== MyViewController.viewDidLoad");
 	 [super viewDidLoad];
 	 
+/*
 	 [self setMotionManager:[[CMMotionManager alloc] init]];
 	 motionManager.gyroUpdateInterval = 1.0/1.0;
 	 if (motionManager.gyroAvailable && NO) {		 
@@ -47,7 +49,8 @@
 	} else {
 		NSLog(@"No accelerometer on device.");
 	}
-
+*/
+ 
 	
 }
 
@@ -74,8 +77,51 @@
 
 
 - (void)dealloc {
-	[motionManager release];
+//	[motionManager release];
     [super dealloc];
+}
+
+
+
+
+-(void)logTouches:(NSSet *)touches withEvent:(UIEvent *)event andLabel:(NSString *)label
+{
+	NSLog(@"Touches ===%@=== <<<", label);
+	NSUInteger touchCount = 0;
+	for (UITouch *touch in touches) {
+		
+		CGPoint p = [touch previousLocationInView:[self view]];
+		CGPoint c = [touch locationInView:[self view]];
+		
+		NSLog(@"   phase=%d, locationInView=(%f,%f), previousLocationInView=(%f,%f), tapCount=%d, timestamp=%f", 
+			  [touch phase], c.x, c.y, p.x, p.y, [touch tapCount], [touch timestamp] );
+		touchCount++;  
+	}
+	NSLog(@">>>");
+}
+
+// Handles the start of a touch
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+	[self logTouches:touches withEvent:event andLabel:@"BEGAN"];
+}
+
+
+// Handles the continuation of a touch.
+-(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
+{  
+	[self logTouches:touches withEvent:event andLabel:@"MOVED"];
+}
+
+// Handles the end of a touch event.
+-(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+{
+	[self logTouches:touches withEvent:event andLabel:@"ENDED"];
+}
+
+-(void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event
+{
+	[self logTouches:touches withEvent:event andLabel:@"CANCELLED"];
 }
 
 
