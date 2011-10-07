@@ -19,6 +19,10 @@
     MyView *v = [[MyView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 //	[v setBackgroundColor:[UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:0.2]];
 	[v setMultipleTouchEnabled:YES];
+	[v setClearsContextBeforeDrawing:NO]; 
+	[v setOpaque:YES];
+	[v setContentMode:UIViewContentModeTopLeft];
+
 	[self setView:v];
     [v release];
 }
@@ -57,8 +61,8 @@
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
 	NSLog(@"=== MyViewController.shouldAutorotateToInterfaceOrientation");
-	return (interfaceOrientation == UIInterfaceOrientationPortrait);
-//	return YES;
+//	return (interfaceOrientation == UIInterfaceOrientationPortrait);
+	return YES;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -86,16 +90,14 @@
 
 -(void)logTouches:(NSSet *)touches withEvent:(UIEvent *)event andLabel:(NSString *)label
 {
-	NSLog(@"Touches ===%@=== <<<", label);
-	NSUInteger touchCount = 0;
+	NSLog(@"Touches ===%@=== #touches=%d, Event touches: all=%d, win=%d, view=%d <<<", 
+		  label, [touches count], [[event allTouches] count], 
+		  [[event touchesForWindow:[[self view] window]] count], [[event touchesForView:[self view]] count]);
 	for (UITouch *touch in touches) {
-		
 		CGPoint p = [touch previousLocationInView:[self view]];
 		CGPoint c = [touch locationInView:[self view]];
-		
 		NSLog(@" id=%X, phase=%d, locationInView=(%f,%f), previousLocationInView=(%f,%f), tapCount=%d, timestamp=%f", 
 			  touch, [touch phase], c.x, c.y, p.x, p.y, [touch tapCount], [touch timestamp] );
-		touchCount++;  
 	}
 	NSLog(@">>>");
 }
@@ -118,12 +120,21 @@
 {
 	[self logTouches:touches withEvent:event andLabel:@"ENDED"];
 
+	
+	if ([touches count] == [[event touchesForView:[self view]] count]) {
+		NSLog(@"- - - - - - - - - - - - - - - - - - - - - SEQUENCE HAS ENDED - - - - - - - - - - - - - - - - - - - - - -");
+	}
+	
+	/*
+	[self view].userInteractionEnabled = NO;
+
 	CGPoint p = [[touches anyObject] locationInView:[self view]];
 	[UIView beginAnimations:nil context:NULL];
     [UIView setAnimationDuration:0.5];
     CGAffineTransform t = CGAffineTransformMakeTranslation(p.x,p.y);
     [self view].transform = t;
     [UIView commitAnimations];
+	 */
 }
 
 -(void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event
