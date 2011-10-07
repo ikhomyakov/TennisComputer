@@ -93,8 +93,8 @@
 		CGPoint p = [touch previousLocationInView:[self view]];
 		CGPoint c = [touch locationInView:[self view]];
 		
-		NSLog(@"   phase=%d, locationInView=(%f,%f), previousLocationInView=(%f,%f), tapCount=%d, timestamp=%f", 
-			  [touch phase], c.x, c.y, p.x, p.y, [touch tapCount], [touch timestamp] );
+		NSLog(@" id=%X, phase=%d, locationInView=(%f,%f), previousLocationInView=(%f,%f), tapCount=%d, timestamp=%f", 
+			  touch, [touch phase], c.x, c.y, p.x, p.y, [touch tapCount], [touch timestamp] );
 		touchCount++;  
 	}
 	NSLog(@">>>");
@@ -117,6 +117,13 @@
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
 	[self logTouches:touches withEvent:event andLabel:@"ENDED"];
+
+	CGPoint p = [[touches anyObject] locationInView:[self view]];
+	[UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:0.5];
+    CGAffineTransform t = CGAffineTransformMakeTranslation(p.x,p.y);
+    [self view].transform = t;
+    [UIView commitAnimations];
 }
 
 -(void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event
