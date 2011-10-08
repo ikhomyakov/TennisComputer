@@ -1,5 +1,6 @@
 #import "MyViewController.h"
 #import "MyView.h"
+#import "UIColorHex.h"
 
 @implementation MyViewController
 
@@ -13,6 +14,19 @@
 	return self;
 }
 
+
+- (id)makeLabel:(NSString *)title withColor:(UIColor *)color frame:(CGRect)rect {
+	UILabel *v1 = [[[UILabel alloc] initWithFrame:rect] autorelease];
+	[v1 setText:title];
+	[v1 setBackgroundColor:color];
+	[v1 setTextColor:[UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:1.0]];
+	[v1 setFont:[UIFont fontWithName:@"Helvetica-Bold" size:15]];
+	[v1 setTextAlignment:UITextAlignmentCenter];
+	[v1 setNumberOfLines:2];
+	return v1;
+}
+
+
 - (void)loadView {
 	NSLog(@"=== MyViewController.loadView");
 
@@ -22,7 +36,44 @@
 	[v setClearsContextBeforeDrawing:NO]; 
 	[v setOpaque:YES];
 	[v setContentMode:UIViewContentModeTopLeft];
-
+	
+	
+	UIView *v1;
+	
+	v1 = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+	[v1 addSubview:[self makeLabel:@"first serve" withColor:[UIColor colorWithHex:@"000000" alpha:1] frame:CGRectMake(4,4,304,20)]];
+	[v1 addSubview:[self makeLabel:@"ace" withColor:[UIColor colorWithHex:@"AA3280" alpha:1] frame:CGRectMake(4,28,150,100)]];
+	[v1 addSubview:[self makeLabel:@"not returned" withColor:[UIColor colorWithHex:@"803C68" alpha:1] frame:CGRectMake(4,132,150,100)]];
+	[v1 addSubview:[self makeLabel:@"returned" withColor:[UIColor colorWithHex:@"6F104E" alpha:1] frame:CGRectMake(4,236,150,100)]];
+	[v1 addSubview:[self makeLabel:@"fault net" withColor:[UIColor colorWithHex:@"D564AD" alpha:1] frame:CGRectMake(158,28,150,100)]];
+	[v1 addSubview:[self makeLabel:@"fault long" withColor:[UIColor colorWithHex:@"D582B8" alpha:1] frame:CGRectMake(158,132,150,100)]];
+	[v1 addSubview:[self makeLabel:@"fault wide" withColor:[UIColor colorWithHex:@"5D314D" alpha:1] frame:CGRectMake(158,236,150,100)]];
+	[v addSubview:v1];
+	[v1 setHidden:NO];
+	[v1 release];
+	
+	v1 = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+	[v1 addSubview:[self makeLabel:@"second serve" withColor:[UIColor colorWithHex:@"000000" alpha:1] frame:CGRectMake(4,4,304,20)]];
+	[v1 addSubview:[self makeLabel:@"ace" withColor:[UIColor colorWithHex:@"6A1E98" alpha:1] frame:CGRectMake(4,28,150,100)]];
+	[v1 addSubview:[self makeLabel:@"not returned" withColor:[UIColor colorWithHex:@"582D72" alpha:1] frame:CGRectMake(4,132,150,100)]];
+	[v1 addSubview:[self makeLabel:@"returned" withColor:[UIColor colorWithHex:@"420A63" alpha:1] frame:CGRectMake(4,236,150,100)]];
+	[v1 addSubview:[self makeLabel:@"fault net" withColor:[UIColor colorWithHex:@"9E51CB" alpha:1] frame:CGRectMake(158,28,150,100)]];
+	[v1 addSubview:[self makeLabel:@"fault long" withColor:[UIColor colorWithHex:@"AA72CB" alpha:1] frame:CGRectMake(158,132,150,100)]];
+	[v1 addSubview:[self makeLabel:@"fault wide" withColor:[UIColor colorWithHex:@"4A2C5C" alpha:1] frame:CGRectMake(158,236,150,100)]];
+	[v addSubview:v1];
+	[v1 setHidden:NO];
+	[v1 release];
+	
+	/*
+	UIButton *v2 = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+	[v2 setFrame:CGRectMake(10, 40, 100, 100)];
+	[v2 setTitle:@"ACE" forState:UIControlStateNormal];
+	[v2 setBackgroundColor:[UIColor colorWithRed:0 green:1 blue:1 alpha:1]];
+//	[v2 setUserInteractionEnabled:YES];
+	[v addSubview:v2];
+	[v2 release];
+	 */
+		
 	[self setView:v];
     [v release];
 }
@@ -61,8 +112,8 @@
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
 	NSLog(@"=== MyViewController.shouldAutorotateToInterfaceOrientation");
-//	return (interfaceOrientation == UIInterfaceOrientationPortrait);
-	return YES;
+	return (interfaceOrientation == UIInterfaceOrientationPortrait);
+//	return YES;
 }
 
 - (void)didReceiveMemoryWarning {

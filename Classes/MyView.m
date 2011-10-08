@@ -17,8 +17,8 @@
 @implementation MyView
 
 
--(void)drawRect:(CGRect)rect
-{
+-(void)drawRect:(CGRect)rect {
+	return;
 	CGContextRef c = UIGraphicsGetCurrentContext();
 
 	UIDeviceOrientation o = [UIDevice currentDevice].orientation;

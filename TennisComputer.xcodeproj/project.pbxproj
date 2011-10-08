@@ -13,6 +13,7 @@
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
 		5568A3DA143E4CF2008CBEB2 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5568A3D9143E4CF2008CBEB2 /* CoreMotion.framework */; };
+		5576AD211440484200CC6556 /* UIColorHex.m in Sources */ = {isa = PBXBuildFile; fileRef = 5576AD201440484200CC6556 /* UIColorHex.m */; };
 		558B2FF8143C4A1E00C143B3 /* MyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 558B2FF7143C4A1E00C143B3 /* MyViewController.m */; };
 		558C26A3143B1086000FB86E /* MyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 558C26A2143B1086000FB86E /* MyView.m */; };
 /* End PBXBuildFile section */
@@ -27,6 +28,8 @@
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* TennisComputer_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TennisComputer_Prefix.pch; sourceTree = "<group>"; };
 		5568A3D9143E4CF2008CBEB2 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
+		5576AD1F1440484200CC6556 /* UIColorHex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIColorHex.h; sourceTree = "<group>"; };
+		5576AD201440484200CC6556 /* UIColorHex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIColorHex.m; sourceTree = "<group>"; };
 		558B2FF6143C4A1E00C143B3 /* MyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyViewController.h; sourceTree = "<group>"; };
 		558B2FF7143C4A1E00C143B3 /* MyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyViewController.m; sourceTree = "<group>"; };
 		558C26A1143B1086000FB86E /* MyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyView.h; sourceTree = "<group>"; };
@@ -52,6 +55,8 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				5576AD1F1440484200CC6556 /* UIColorHex.h */,
+				5576AD201440484200CC6556 /* UIColorHex.m */,
 				558B2FF6143C4A1E00C143B3 /* MyViewController.h */,
 				558B2FF7143C4A1E00C143B3 /* MyViewController.m */,
 				1D3623240D0F684500981E51 /* TennisComputerAppDelegate.h */,
@@ -173,6 +178,7 @@
 				1D3623260D0F684500981E51 /* TennisComputerAppDelegate.m in Sources */,
 				558C26A3143B1086000FB86E /* MyView.m in Sources */,
 				558B2FF8143C4A1E00C143B3 /* MyViewController.m in Sources */,
+				5576AD211440484200CC6556 /* UIColorHex.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
