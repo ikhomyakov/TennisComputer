@@ -55,7 +55,14 @@
 	CGContextSetRGBFillColor(c, 78/256.0, 29/256.0, 144/256.0, 1.0);	
 	CGContextAddRect(c,CGRectMake(x0,y0,x6-x0,y6-y0));
 	CGContextFillPath(c);
-	CGContextSetRGBFillColor(c, 8/256.0, 87/256.0, 22/256.0, 1.0);	
+	
+	if ( CGRectContainsPoint(CGRectMake(x2,y1,x4-x2,y5-y1), cursor) ) {
+		CGContextSetRGBFillColor(c, 8/256.0, 87/256.0, 22/256.0, 1.0);
+	} else if ( CGRectContainsPoint(CGRectMake(x1,y1,x5-x1,y5-y1), cursor) ) {
+		CGContextSetRGBFillColor(c, 118/256.0, 87/256.0, 22/256.0, 1.0);
+	} else {
+		CGContextSetRGBFillColor(c, 218/256.0, 87/256.0, 22/256.0, 1.0);
+	}
 	CGContextAddRect(c,CGRectMake(x1,y1,x5-x1,y5-y1));
 	CGContextFillPath(c);
 

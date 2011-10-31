@@ -213,8 +213,9 @@
 		CGPoint p = [touch previousLocationInView:[self view]];
 		CGPoint c = [touch locationInView:[self view]];
 		[[self view] setCursor:c];
+		[[self view] setNeedsDisplay];
+		break;
 	}
-	[[self view] setNeedsDisplay];
 }
 
 
@@ -227,8 +228,9 @@
 		CGPoint p = [touch previousLocationInView:[self view]];
 		CGPoint c = [touch locationInView:[self view]];
 		[[self view] setCursor:c];
+		[[self view] setNeedsDisplay];
+		break;
 	}
-	[[self view] setNeedsDisplay];
 	
 	
 	/*
@@ -260,8 +262,9 @@
 		CGPoint p = [touch previousLocationInView:[self view]];
 		CGPoint c = [touch locationInView:[self view]];
 		[[self view] setCursor:c];
+		[[self view] setNeedsDisplay];
+		break;
 	}
-	[[self view] setNeedsDisplay];
 	
 	/*
 	[self view].userInteractionEnabled = NO;
