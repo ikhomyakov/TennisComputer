@@ -12,6 +12,15 @@
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
+		5529E44A1444066400794D0E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
+		5529E44B1444066400794D0E /* TennisComputerAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* TennisComputerAppDelegate.m */; };
+		5529E44C1444066400794D0E /* MyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 558C26A2143B1086000FB86E /* MyView.m */; };
+		5529E44D1444066400794D0E /* MyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 558B2FF7143C4A1E00C143B3 /* MyViewController.m */; };
+		5529E44E1444066400794D0E /* UIColorHex.m in Sources */ = {isa = PBXBuildFile; fileRef = 5576AD201440484200CC6556 /* UIColorHex.m */; };
+		5529E4501444066400794D0E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
+		5529E4511444066400794D0E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
+		5529E4521444066400794D0E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
+		5529E4531444066400794D0E /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5568A3D9143E4CF2008CBEB2 /* CoreMotion.framework */; };
 		5568A3DA143E4CF2008CBEB2 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5568A3D9143E4CF2008CBEB2 /* CoreMotion.framework */; };
 		5576AD211440484200CC6556 /* UIColorHex.m in Sources */ = {isa = PBXBuildFile; fileRef = 5576AD201440484200CC6556 /* UIColorHex.m */; };
 		558B2FF8143C4A1E00C143B3 /* MyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 558B2FF7143C4A1E00C143B3 /* MyViewController.m */; };
@@ -27,6 +36,9 @@
 		288765FC0DF74451002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* TennisComputer_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TennisComputer_Prefix.pch; sourceTree = "<group>"; };
+		5529E4431444063E00794D0E /* TennisComputerIpad-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TennisComputerIpad-Info.plist"; sourceTree = "<group>"; };
+		5529E4571444066400794D0E /* TennisComputer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TennisComputer.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		5529E4591444066400794D0E /* TennisComputer-Info copy.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TennisComputer-Info copy.plist"; sourceTree = "<group>"; };
 		5568A3D9143E4CF2008CBEB2 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		5576AD1F1440484200CC6556 /* UIColorHex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIColorHex.h; sourceTree = "<group>"; };
 		5576AD201440484200CC6556 /* UIColorHex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIColorHex.m; sourceTree = "<group>"; };
@@ -46,6 +58,17 @@
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */,
 				5568A3DA143E4CF2008CBEB2 /* CoreMotion.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5529E44F1444066400794D0E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5529E4501444066400794D0E /* Foundation.framework in Frameworks */,
+				5529E4511444066400794D0E /* UIKit.framework in Frameworks */,
+				5529E4521444066400794D0E /* CoreGraphics.framework in Frameworks */,
+				5529E4531444066400794D0E /* CoreMotion.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -71,6 +94,7 @@
 			isa = PBXGroup;
 			children = (
 				1D6058910D05DD3D006BFB54 /* TennisComputer.app */,
+				5529E4571444066400794D0E /* TennisComputer.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -81,8 +105,10 @@
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
+				5529E45A144406A100794D0E /* Resources-iPad */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
+				5529E4431444063E00794D0E /* TennisComputerIpad-Info.plist */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
@@ -100,6 +126,7 @@
 			isa = PBXGroup;
 			children = (
 				8D1107310486CEB800E47090 /* TennisComputer-Info.plist */,
+				5529E4591444066400794D0E /* TennisComputer-Info copy.plist */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -113,6 +140,13 @@
 				5568A3D9143E4CF2008CBEB2 /* CoreMotion.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		5529E45A144406A100794D0E /* Resources-iPad */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Resources-iPad";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -135,6 +169,23 @@
 			productReference = 1D6058910D05DD3D006BFB54 /* TennisComputer.app */;
 			productType = "com.apple.product-type.application";
 		};
+		5529E4471444066400794D0E /* TennisComputer copy */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5529E4541444066400794D0E /* Build configuration list for PBXNativeTarget "TennisComputer copy" */;
+			buildPhases = (
+				5529E4481444066400794D0E /* Resources */,
+				5529E4491444066400794D0E /* Sources */,
+				5529E44F1444066400794D0E /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "TennisComputer copy";
+			productName = TennisComputer;
+			productReference = 5529E4571444066400794D0E /* TennisComputer.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -155,12 +206,20 @@
 			projectRoot = "";
 			targets = (
 				1D6058900D05DD3D006BFB54 /* TennisComputer */,
+				5529E4471444066400794D0E /* TennisComputer copy */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		1D60588D0D05DD3D006BFB54 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5529E4481444066400794D0E /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -182,10 +241,55 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		5529E4491444066400794D0E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5529E44A1444066400794D0E /* main.m in Sources */,
+				5529E44B1444066400794D0E /* TennisComputerAppDelegate.m in Sources */,
+				5529E44C1444066400794D0E /* MyView.m in Sources */,
+				5529E44D1444066400794D0E /* MyViewController.m in Sources */,
+				5529E44E1444066400794D0E /* UIColorHex.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
 		1D6058940D05DD3E006BFB54 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = TennisComputer_Prefix.pch;
+				INFOPLIST_FILE = "TennisComputer-Info.plist";
+				PRODUCT_NAME = TennisComputer;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		1D6058950D05DD3E006BFB54 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = TennisComputer_Prefix.pch;
+				INFOPLIST_FILE = "TennisComputer-Info.plist";
+				PRODUCT_NAME = TennisComputer;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		5529E4551444066400794D0E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -194,19 +298,19 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = TennisComputer_Prefix.pch;
-				INFOPLIST_FILE = "TennisComputer-Info.plist";
+				INFOPLIST_FILE = "TennisComputer-Info copy.plist";
 				PRODUCT_NAME = TennisComputer;
 			};
 			name = Debug;
 		};
-		1D6058950D05DD3E006BFB54 /* Release */ = {
+		5529E4561444066400794D0E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = TennisComputer_Prefix.pch;
-				INFOPLIST_FILE = "TennisComputer-Info.plist";
+				INFOPLIST_FILE = "TennisComputer-Info copy.plist";
 				PRODUCT_NAME = TennisComputer;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -247,6 +351,15 @@
 			buildConfigurations = (
 				1D6058940D05DD3E006BFB54 /* Debug */,
 				1D6058950D05DD3E006BFB54 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5529E4541444066400794D0E /* Build configuration list for PBXNativeTarget "TennisComputer copy" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5529E4551444066400794D0E /* Debug */,
+				5529E4561444066400794D0E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

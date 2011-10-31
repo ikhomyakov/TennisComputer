@@ -16,82 +16,91 @@
 
 @implementation MyView
 
+-(void)setCursor:(CGPoint)c {
+	cursor = c;
+}
+
 
 -(void)drawRect:(CGRect)rect {
-	return;
+	
+	
 	CGContextRef c = UIGraphicsGetCurrentContext();
 
-	UIDeviceOrientation o = [UIDevice currentDevice].orientation;
-	switch (o) {
-		case UIDeviceOrientationPortrait:
-			CGContextSetRGBFillColor(c, 1.0, 1.0, 1.0, 1.0);
-			break;
-		case UIDeviceOrientationPortraitUpsideDown:
-			CGContextSetRGBFillColor(c, 1.0, 1.0, 1.0, 0.75);
-			break;
-		case UIDeviceOrientationLandscapeLeft:
-			CGContextSetRGBFillColor(c, 1.0, 1.0, 0.0, 0.50);
-			break;
-		case UIDeviceOrientationLandscapeRight:
-			CGContextSetRGBFillColor(c, 1.0, 1.0, 1.0, 0.00);
-			break;
-		case UIDeviceOrientationFaceUp:
-		case UIDeviceOrientationFaceDown:
-		default:
-			CGContextSetRGBFillColor(c, 1.0, 0.0, 0.0, 0.5);
-			break;
-	}
+//	UIDeviceOrientation o = [UIDevice currentDevice].orientation;
+	
+	
+	CGRect r = [self bounds];
+	CGFloat h = r.size.height-1.0;
+//	CGFloat w = 60.0 * h / 120.0;
+	CGFloat w = r.size.width-1.0;
+	
+	CGFloat x0 = 0.5;
+	CGFloat x1  = x0 + w/60.0 * 12.0;
+	CGFloat x1a = x1 - w/60.0 *  3.0;
+	CGFloat x2  = x1 + w/60.0 *  4.5;
+	CGFloat x3  = x2 + w/60.0 * 13.5;
+	CGFloat x4  = x3 + w/60.0 * 13.5;
+	CGFloat x5  = x4 + w/60.0 *  4.5;
+	CGFloat x5a = x5 + w/60.0 *  3.0;
+	CGFloat x6  = x5 + w/60.0 * 12.0;
+	
+	CGFloat y0 = 0.5;
+	CGFloat y1 = y0 + h/120.0 * 21.0;
+	CGFloat y2 = y1 + h/120.0 * 18.0;
+	CGFloat y3 = y2 + h/120.0 * 21.0;
+	CGFloat y4 = y3 + h/120.0 * 21.0;
+	CGFloat y5 = y4 + h/120.0 * 18.0;
+	CGFloat y6 = y5 + h/120.0 * 21.0;
+	
+	CGContextSetRGBFillColor(c, 78/256.0, 29/256.0, 144/256.0, 1.0);	
+	CGContextAddRect(c,CGRectMake(x0,y0,x6-x0,y6-y0));
+	CGContextFillPath(c);
+	CGContextSetRGBFillColor(c, 8/256.0, 87/256.0, 22/256.0, 1.0);	
+	CGContextAddRect(c,CGRectMake(x1,y1,x5-x1,y5-y1));
+	CGContextFillPath(c);
+
+	CGContextSetLineWidth(c, 1.0);
+	CGContextSetRGBStrokeColor(c, 1.0, 1.0, 1.0, 1.0);
+	CGContextMoveToPoint(c, x1, y1);
+	CGContextAddLineToPoint(c, x5, y1);
+	CGContextAddLineToPoint(c, x5, y5);
+	CGContextAddLineToPoint(c, x1, y5);
+	CGContextAddLineToPoint(c, x1, y1);
+	CGContextMoveToPoint(c, x2, y1);
+	CGContextAddLineToPoint(c, x2, y5);
+	CGContextMoveToPoint(c, x4, y1);
+	CGContextAddLineToPoint(c, x4, y5);
+	CGContextMoveToPoint(c, x3, y2);
+	CGContextAddLineToPoint(c, x3, y4);
+	CGContextMoveToPoint(c, x2, y2);
+	CGContextAddLineToPoint(c, x4, y2);
+	CGContextMoveToPoint(c, x2, y4);
+	CGContextAddLineToPoint(c, x4, y4);
+	CGContextMoveToPoint(c, x3, y1);
+	CGContextAddLineToPoint(c, x3, y1+4);
+	CGContextMoveToPoint(c, x3, y5);
+	CGContextAddLineToPoint(c, x3, y5-4);
+	CGContextStrokePath(c);
+
+	CGContextSetLineWidth(c, 2.0);
+	CGContextMoveToPoint(c, x1a, y3);
+	CGContextAddLineToPoint(c, x5a, y3);
+	CGContextStrokePath(c);
 	
 	CGContextSetLineWidth(c, 0.5);
-	CGContextSetRGBStrokeColor(c, 1.0, 1.0, 0.0, 1.0);
-	CGContextSetRGBFillColor(c, 0.0, 0.0, 0.0, 0.5);
+	CGContextMoveToPoint(c, cursor.x-20, cursor.y-20);
+	CGContextAddLineToPoint(c, cursor.x+20, cursor.y+20);
+	CGContextMoveToPoint(c, cursor.x-20, cursor.y+20);
+	CGContextAddLineToPoint(c, cursor.x+20, cursor.y-20);
+	CGContextStrokePath(c);
 	
-//	CGContextAddRect(c,rect);
-//	CGContextFillPath(c);
-//	CGContextAddRect(c,rect);
-//	CGContextStrokePath(c);
 
-	CGContextSetRGBStrokeColor(c, 0.0, 1.0, 0.0, 1.0);
-		
-	CGContextMoveToPoint(c, 10.0, 30.0);
-	CGContextAddLineToPoint(c, 310.0, 30.0);
+	return;
 	
-	CGContextStrokePath(c);
-	
-	CGPoint addLines[] =
-	{
-		CGPointMake(10.0, 90.0),
-		CGPointMake(70.0, 60.0),
-		CGPointMake(130.0, 90.0),
-		CGPointMake(190.0, 60.0),
-		CGPointMake(250.0, 90.0),
-		CGPointMake(310.0, 60.0),
-	};
-	// Bulk call to add lines to the current path.
-	// Equivalent to MoveToPoint(points[0]); for(i=1; i<count; ++i) AddLineToPoint(points[i]);
-	CGContextAddLines(c, addLines, sizeof(addLines)/sizeof(addLines[0]));
-	CGContextStrokePath(c);
-	
-	// Draw a series of line segments. Each pair of points is a segment
-	CGPoint strokeSegments[] =
-	{
-		CGPointMake(10.0, 150.0),
-		CGPointMake(70.0, 120.0),
-		CGPointMake(130.0, 150.0),
-		CGPointMake(190.0, 120.0),
-		CGPointMake(250.0, 150.0),
-		CGPointMake(310.0, 120.0),
-	};
-	// Bulk call to stroke a sequence of line segments.
-	// Equivalent to for(i=0; i<count; i+=2) { MoveToPoint(point[i]); AddLineToPoint(point[i+1]); StrokePath(); }
-	CGContextStrokeLineSegments(c, strokeSegments, sizeof(strokeSegments)/sizeof(strokeSegments[0]));
-	
-	
+	/*
 	CGFloat w, h;
 	w = rect.size.width;
 	h = rect.size.height;
-		
-	
 	
 	CGContextTranslateCTM(c, 0, h);
 	CGContextScaleCTM(c, 1, -1);
@@ -107,7 +116,10 @@
 	t =  CGAffineTransformMake(1,0,0,1,0,0);
 	CGContextSetTextMatrix(c, t);
 	CGContextShowTextAtPoint(c, 30, 30, "TENNIS", 6);
+	 */
 }
+
+
 
 @end
 

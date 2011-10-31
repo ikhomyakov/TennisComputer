@@ -3,8 +3,11 @@
 @end
 
 @interface MyView : UIView {
-	
+	CGPoint cursor;
 }
+
+-(void)setCursor:(CGPoint)c;
+
 @end
 
 

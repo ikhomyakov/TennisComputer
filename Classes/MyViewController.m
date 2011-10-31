@@ -49,7 +49,7 @@
 	[v1 addSubview:[self makeLabel:@"fault long" withColor:[UIColor colorWithHex:@"D582B8" alpha:1] frame:CGRectMake(158,132,150,100)]];
 	[v1 addSubview:[self makeLabel:@"fault wide" withColor:[UIColor colorWithHex:@"5D314D" alpha:1] frame:CGRectMake(158,236,150,100)]];
 	[v addSubview:v1];
-	[v1 setHidden:NO];
+	[v1 setHidden:YES];
 	[v1 release];
 	
 	v1 = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
@@ -61,7 +61,59 @@
 	[v1 addSubview:[self makeLabel:@"fault long" withColor:[UIColor colorWithHex:@"AA72CB" alpha:1] frame:CGRectMake(158,132,150,100)]];
 	[v1 addSubview:[self makeLabel:@"fault wide" withColor:[UIColor colorWithHex:@"4A2C5C" alpha:1] frame:CGRectMake(158,236,150,100)]];
 	[v addSubview:v1];
-	[v1 setHidden:NO];
+	[v1 setHidden:YES];
+	[v1 release];
+	
+	
+	v1 = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+	[v1 addSubview:[self makeLabel:@"serve placement and type" withColor:[UIColor colorWithHex:@"000000" alpha:1] frame:CGRectMake(4,4,304,20)]];
+	[v1 addSubview:[self makeLabel:@"T" withColor:[UIColor colorWithHex:@"1A608D" alpha:1] frame:CGRectMake(4,28,150,100)]];
+	[v1 addSubview:[self makeLabel:@"body" withColor:[UIColor colorWithHex:@"29506A" alpha:1] frame:CGRectMake(4,132,150,100)]];
+	[v1 addSubview:[self makeLabel:@"wide" withColor:[UIColor colorWithHex:@"093B5C" alpha:1] frame:CGRectMake(4,236,150,100)]];
+	[v1 addSubview:[self makeLabel:@"flat" withColor:[UIColor colorWithHex:@"159C54" alpha:1] frame:CGRectMake(158,28,150,100)]];
+	[v1 addSubview:[self makeLabel:@"slice" withColor:[UIColor colorWithHex:@"29754C" alpha:1] frame:CGRectMake(158,132,150,100)]];
+	[v1 addSubview:[self makeLabel:@"kick" withColor:[UIColor colorWithHex:@"076533" alpha:1] frame:CGRectMake(158,236,150,100)]];
+	[v addSubview:v1];
+	[v1 setHidden:YES];
+	[v1 release];	
+	
+	
+	v1 = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+	[v1 addSubview:[self makeLabel:@"game" withColor:[UIColor colorWithHex:@"000000" alpha:1] frame:CGRectMake(4,4,304,20)]];
+	[v1 addSubview:[self makeLabel:@"won" withColor:[UIColor colorWithHex:@"94B092" alpha:1] frame:CGRectMake(4,28,150,100)]];
+	[v1 addSubview:[self makeLabel:@"lost" withColor:[UIColor colorWithHex:@"336A66" alpha:1] frame:CGRectMake(4,132,150,100)]];
+//	[v1 addSubview:[self makeLabel:@"" withColor:[UIColor colorWithHex:@"95002B" alpha:1] frame:CGRectMake(4,236,150,100)]];
+	[v1 addSubview:[self makeLabel:@"winner" withColor:[UIColor colorWithHex:@"4A5B74" alpha:1] frame:CGRectMake(158,28,150,100)]];
+	[v1 addSubview:[self makeLabel:@"forced error" withColor:[UIColor colorWithHex:@"686F74" alpha:1] frame:CGRectMake(158,132,150,100)]];
+	[v1 addSubview:[self makeLabel:@"unforced error" withColor:[UIColor colorWithHex:@"A1B4A2" alpha:1] frame:CGRectMake(158,236,150,100)]];
+	[v addSubview:v1];
+	[v1 setHidden:YES];
+	[v1 release];
+	
+	
+	v1 = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+	[v1 addSubview:[self makeLabel:@"" withColor:[UIColor colorWithHex:@"000000" alpha:1] frame:CGRectMake(4,4,304,20)]];
+	[v1 addSubview:[self makeLabel:@"forehand" withColor:[UIColor colorWithHex:@"CFC679" alpha:1] frame:CGRectMake(4,28,150,100)]];
+	[v1 addSubview:[self makeLabel:@"backhand" withColor:[UIColor colorWithHex:@"68A09D" alpha:1] frame:CGRectMake(4,132,150,100)]];
+	//	[v1 addSubview:[self makeLabel:@"" withColor:[UIColor colorWithHex:@"95002B" alpha:1] frame:CGRectMake(4,236,150,100)]];
+	[v1 addSubview:[self makeLabel:@"cross court" withColor:[UIColor colorWithHex:@"1D809D" alpha:1] frame:CGRectMake(158,28,150,100)]];
+	[v1 addSubview:[self makeLabel:@"down the line" withColor:[UIColor colorWithHex:@"02698A" alpha:1] frame:CGRectMake(158,132,150,100)]];
+	[v1 addSubview:[self makeLabel:@"inside out" withColor:[UIColor colorWithHex:@"09454F" alpha:1] frame:CGRectMake(158,236,150,100)]];
+	[v addSubview:v1];
+	[v1 setHidden:YES];
+	[v1 release];
+	
+	
+	v1 = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+	[v1 addSubview:[self makeLabel:@"" withColor:[UIColor colorWithHex:@"000000" alpha:1] frame:CGRectMake(4,4,304,20)]];
+	[v1 addSubview:[self makeLabel:@"top spin ground" withColor:[UIColor colorWithHex:@"CFC679" alpha:1] frame:CGRectMake(4,28,150,100)]];
+	[v1 addSubview:[self makeLabel:@"slice ground" withColor:[UIColor colorWithHex:@"68A09D" alpha:1] frame:CGRectMake(4,132,150,100)]];
+	[v1 addSubview:[self makeLabel:@"volley" withColor:[UIColor colorWithHex:@"95002B" alpha:1] frame:CGRectMake(4,236,150,100)]];
+	[v1 addSubview:[self makeLabel:@"overhead" withColor:[UIColor colorWithHex:@"1D809D" alpha:1] frame:CGRectMake(158,28,150,100)]];
+	[v1 addSubview:[self makeLabel:@"lob" withColor:[UIColor colorWithHex:@"02698A" alpha:1] frame:CGRectMake(158,132,150,100)]];
+	[v1 addSubview:[self makeLabel:@"drop shot" withColor:[UIColor colorWithHex:@"09454F" alpha:1] frame:CGRectMake(158,236,150,100)]];
+	[v addSubview:v1];
+	[v1 setHidden:YES];
 	[v1 release];
 	
 	/*
@@ -157,6 +209,12 @@
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
 	[self logTouches:touches withEvent:event andLabel:@"BEGAN"];
+	for (UITouch *touch in touches) {
+		CGPoint p = [touch previousLocationInView:[self view]];
+		CGPoint c = [touch locationInView:[self view]];
+		[[self view] setCursor:c];
+	}
+	[[self view] setNeedsDisplay];
 }
 
 
@@ -164,6 +222,28 @@
 -(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
 {  
 	[self logTouches:touches withEvent:event andLabel:@"MOVED"];
+	
+	for (UITouch *touch in touches) {
+		CGPoint p = [touch previousLocationInView:[self view]];
+		CGPoint c = [touch locationInView:[self view]];
+		[[self view] setCursor:c];
+	}
+	[[self view] setNeedsDisplay];
+	
+	
+	/*
+	CGContextRef c = UIGraphicsGetCurrentContext();
+	CGContextSetLineWidth(c, 1.0);
+	CGContextSetRGBStrokeColor(c, 1.0, 1.0, 0.0, 1.0);
+	
+	for (UITouch *touch in touches) {
+		CGPoint pl = [touch previousLocationInView:[self view]];
+		CGPoint cl = [touch locationInView:[self view]];
+		CGContextMoveToPoint(c, pl.x, pl.y);
+		CGContextAddLineToPoint(c, cl.x, cl.y);
+	}
+	CGContextStrokePath(c);
+	 */
 }
 
 // Handles the end of a touch event.
@@ -175,6 +255,13 @@
 	if ([touches count] == [[event touchesForView:[self view]] count]) {
 		NSLog(@"- - - - - - - - - - - - - - - - - - - - - SEQUENCE HAS ENDED - - - - - - - - - - - - - - - - - - - - - -");
 	}
+	
+	for (UITouch *touch in touches) {
+		CGPoint p = [touch previousLocationInView:[self view]];
+		CGPoint c = [touch locationInView:[self view]];
+		[[self view] setCursor:c];
+	}
+	[[self view] setNeedsDisplay];
 	
 	/*
 	[self view].userInteractionEnabled = NO;
