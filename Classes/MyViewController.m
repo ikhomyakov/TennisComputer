@@ -209,13 +209,17 @@
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
 	[self logTouches:touches withEvent:event andLabel:@"BEGAN"];
+	
+	[[[self view] stroke] removeAllObjects];
+	
 	for (UITouch *touch in touches) {
 		CGPoint p = [touch previousLocationInView:[self view]];
 		CGPoint c = [touch locationInView:[self view]];
 		[[self view] setCursor:c];
-		[[self view] setNeedsDisplay];
+		[[[self view] stroke] addObject:[NSValue valueWithCGPoint:CGPointMake(c.x, c.y)]];
 		break;
 	}
+	[[self view] setNeedsDisplay];
 }
 
 
@@ -228,9 +232,10 @@
 		CGPoint p = [touch previousLocationInView:[self view]];
 		CGPoint c = [touch locationInView:[self view]];
 		[[self view] setCursor:c];
-		[[self view] setNeedsDisplay];
+		[[[self view] stroke] addObject:[NSValue valueWithCGPoint:CGPointMake(c.x, c.y)]];
 		break;
 	}
+	[[self view] setNeedsDisplay];
 	
 	
 	/*
@@ -262,9 +267,10 @@
 		CGPoint p = [touch previousLocationInView:[self view]];
 		CGPoint c = [touch locationInView:[self view]];
 		[[self view] setCursor:c];
-		[[self view] setNeedsDisplay];
+		[[[self view] stroke] addObject:[NSValue valueWithCGPoint:CGPointMake(c.x, c.y)]];
 		break;
 	}
+	[[self view] setNeedsDisplay];
 	
 	/*
 	[self view].userInteractionEnabled = NO;

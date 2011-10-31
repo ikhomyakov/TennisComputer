@@ -16,6 +16,16 @@
 
 @implementation MyView
 
+@synthesize stroke;
+
+- (id)initWithFrame:(CGRect)aRect {
+	self = [super initWithFrame:aRect];
+	if (self) {
+		[self setStroke:[NSMutableArray arrayWithCapacity: 100]];
+	}
+	return self;
+}
+
 -(void)setCursor:(CGPoint)c {
 	cursor = c;
 }
@@ -59,9 +69,9 @@
 	if ( CGRectContainsPoint(CGRectMake(x2,y1,x4-x2,y5-y1), cursor) ) {
 		CGContextSetRGBFillColor(c, 8/256.0, 87/256.0, 22/256.0, 1.0);
 	} else if ( CGRectContainsPoint(CGRectMake(x1,y1,x5-x1,y5-y1), cursor) ) {
-		CGContextSetRGBFillColor(c, 118/256.0, 87/256.0, 22/256.0, 1.0);
+		CGContextSetRGBFillColor(c, 8/256.0, 97/256.0, 22/256.0, 1.0);
 	} else {
-		CGContextSetRGBFillColor(c, 218/256.0, 87/256.0, 22/256.0, 1.0);
+		CGContextSetRGBFillColor(c, 8/256.0, 107/256.0, 22/256.0, 1.0);
 	}
 	CGContextAddRect(c,CGRectMake(x1,y1,x5-x1,y5-y1));
 	CGContextFillPath(c);
@@ -93,6 +103,26 @@
 	CGContextMoveToPoint(c, x1a, y3);
 	CGContextAddLineToPoint(c, x5a, y3);
 	CGContextStrokePath(c);
+	
+	
+	if ([stroke count] > 0) { 
+		CGPoint s = [[stroke objectAtIndex:0] CGPointValue];
+
+		CGContextSetLineWidth(c, 0.25);
+		CGContextMoveToPoint(c, s.x, s.y);
+		for (NSValue *v in stroke) {
+			CGPoint p = [v CGPointValue];
+			CGContextAddLineToPoint(c, p.x, p.y);
+		}
+		CGContextStrokePath(c);
+
+		CGContextSetLineWidth(c, 0.5);
+		CGContextMoveToPoint(c, s.x-10, s.y-10);
+		CGContextAddLineToPoint(c, s.x+10, s.y+10);
+		CGContextMoveToPoint(c, s.x-10, s.y+10);
+		CGContextAddLineToPoint(c, s.x+10, s.y-10);
+		CGContextStrokePath(c);
+	}
 	
 	CGContextSetLineWidth(c, 0.5);
 	CGContextMoveToPoint(c, cursor.x-20, cursor.y-20);
