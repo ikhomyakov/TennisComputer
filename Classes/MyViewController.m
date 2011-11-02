@@ -238,6 +238,7 @@
 	[[self view] setNeedsDisplay];
 	
 	
+	
 	/*
 	CGContextRef c = UIGraphicsGetCurrentContext();
 	CGContextSetLineWidth(c, 1.0);
