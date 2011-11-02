@@ -14,9 +14,26 @@
 @end
 
 
+CGFloat angleBetweenVectors(CGPoint o, CGPoint a, CGPoint b) {
+	CGPoint t1;
+	t1.x = a.x - o.x;
+	t1.y = a.y - o.y;
+	CGPoint t2;
+	t2.x = b.x - o.x;
+	t2.y = b.y - o.y;
+	CGFloat result = (atan2(t1.y,t1.x) - atan2(t2.y, t2.x)) * 180.0 * M_1_PI;
+	if(result < 0)
+		result += 360.0;
+	return result;
+}
+
+
+
 @implementation MyView
 
 @synthesize stroke;
+
+
 
 - (id)initWithFrame:(CGRect)aRect {
 	self = [super initWithFrame:aRect];
@@ -25,6 +42,7 @@
 	}
 	return self;
 }
+
 
 -(void)setCursor:(CGPoint)c {
 	cursor = c;
@@ -106,11 +124,9 @@
 	CGContextAddLineToPoint(c, x5a, y3);
 	CGContextStrokePath(c);
 	
-	
+
 	CGPoint s = cursor;
 	
-	
-
 	if ([stroke count] > 0) { 
 		s = [[stroke objectAtIndex:0] CGPointValue];
 
@@ -135,7 +151,7 @@
 	} else {
 		CGContextSetRGBStrokeColor(c, 1.0, 1.0, 0.0, 1);
 	}
-	CGContextSetLineWidth(c, 1);
+	CGContextSetLineWidth(c, 0.5);
 	CGContextMoveToPoint(c, cursor.x-25, cursor.y-25);
 	CGContextAddLineToPoint(c, cursor.x+25, cursor.y+25);
 	CGContextMoveToPoint(c, cursor.x-25, cursor.y+25);
@@ -148,13 +164,43 @@
 
 	//return;
 	
-
+	
+	CGFloat a1=0.0;
+	CGFloat a2=0.0;
+	
+	if ([stroke count] >= 4) {
+		CGPoint p0 = [[stroke objectAtIndex:0] CGPointValue];
+		CGPoint p1 = [[stroke objectAtIndex:1] CGPointValue];
+		CGPoint p2 = [[stroke objectAtIndex:[stroke count]-2] CGPointValue];
+		CGPoint p3 = [[stroke objectAtIndex:[stroke count]-1] CGPointValue];
+		
+		a1 = angleBetweenVectors(p0,p3,p1);
+		a2 = angleBetweenVectors(p3,p2,p0);
+	}
+	
+	NSString* f1 = (a1>=0.0 && a1<180.0) ? @"BH" : @"FH";
+	NSString* f2 = 
+		(a1>=0.0 && a1<40.0 || a1<360.0 && a1>=320.0) ? @"VO" :
+		( (a1>=40.0 && a1<60.0 || a1<320.0 && a1>=300.0) ? @"HV" :
+			( (a1>=60.0 && a1<120.0 || a1<300.0 && a1>=240.0) ? @"  " :
+				@"OV"
+			)
+		 );
+		
+	/*
+	slice	flat	topspin	slice lob	topspin lob
+	END 0..60	END 60..90	END 90..150	END 150
+	
+	ground	    volley	    half volley	overhead	
+	BEG 60..120	BEG 0..45	BEG 45..60	BEG 120..180	
+	*/
+		
 	
 	CGContextTranslateCTM(c, 0, h);
 	CGContextScaleCTM(c, 1, -1);
 	
 	CGAffineTransform t;
-	CGContextSelectFont(c, "Courier", 12, kCGEncodingMacRoman);
+	CGContextSelectFont(c, "Courier", 20, kCGEncodingMacRoman);
 	CGContextSetCharacterSpacing(c,0);
 	CGContextSetTextDrawingMode(c, kCGTextFillStroke);
 	CGContextSetRGBFillColor(c, 1, 1, 1, 1);
@@ -164,9 +210,11 @@
 	CGContextSetTextMatrix(c, t);
 	
 	//CGContextShowTextAtPoint(c, 43, 30, "MIDLAND PARK", 12);
-	NSString* scount = [NSString stringWithFormat:@"%d pts, (%.2f,%.2f), %.2f feet", [stroke count], 
-		(cursor.x)*uw/w, (cursor.y)*uh/h, sqrt( pow((cursor.x-s.x)*uw/w,2.0)+pow((cursor.y-s.y)*uh/h,2.0) )];
-	CGContextShowTextAtPoint(c, 43, 30, [scount cStringUsingEncoding:NSUTF8StringEncoding], [scount length]);
+	NSString* scount = [NSString stringWithFormat:@"%s %s|%d|%.0f|%.0f|%.2f|", 
+						[f1 cStringUsingEncoding:NSUTF8StringEncoding], [f2 cStringUsingEncoding:NSUTF8StringEncoding], [stroke count], 
+		/* (cursor.x)*uw/w, (cursor.y)*uh/h,*/
+		a1, a2, sqrt( pow((cursor.x-s.x)*uw/w,2.0)+pow((cursor.y-s.y)*uh/h,2.0) )];
+	CGContextShowTextAtPoint(c, 10, 25, [scount cStringUsingEncoding:NSUTF8StringEncoding], [scount length]);
 
 	
 }

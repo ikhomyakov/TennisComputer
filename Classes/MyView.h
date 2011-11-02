@@ -12,6 +12,7 @@
 -(id)initWithFrame:(CGRect)aRect;
 -(void)setCursor:(CGPoint)c;
 
+
 @end
 
 
