@@ -27,6 +27,24 @@ CGFloat angleBetweenVectors(CGPoint o, CGPoint a, CGPoint b) {
 	return result;
 }
 
+void drawMarker(CGContextRef c, CGPoint p, CGFloat markerSize, CGFloat lineWidth, CGFloat red, CGFloat green, CGFloat blue, CGFloat alpha) {
+	CGFloat d = markerSize;
+	CGFloat r = d / 2.0;
+	CGFloat q = r / sqrt(2.0);
+	
+	CGContextSetRGBStrokeColor(c, red, green, blue, alpha);
+	CGContextSetLineWidth(c, lineWidth);
+	CGContextMoveToPoint(c, p.x-q, p.y-q);
+	CGContextAddLineToPoint(c, p.x+q, p.y+q);
+	CGContextMoveToPoint(c, p.x-q, p.y+q);
+	CGContextAddLineToPoint(c, p.x+q, p.y-q);
+	CGContextMoveToPoint(c, p.x, p.y);
+	CGContextStrokePath(c);
+	CGContextStrokeEllipseInRect(c, CGRectMake(p.x-r, p.y-r, d, d));
+	CGContextStrokePath(c);
+}
+
+
 
 
 @implementation MyView
@@ -138,29 +156,14 @@ CGFloat angleBetweenVectors(CGPoint o, CGPoint a, CGPoint b) {
 		}
 		CGContextStrokePath(c);
 
-		CGContextSetLineWidth(c, 0.5);
-		CGContextMoveToPoint(c, s.x-10, s.y-10);
-		CGContextAddLineToPoint(c, s.x+10, s.y+10);
-		CGContextMoveToPoint(c, s.x-10, s.y+10);
-		CGContextAddLineToPoint(c, s.x+10, s.y-10);
-		CGContextStrokePath(c);
+		drawMarker(c, s, 16, 1.0, 0.0, 1.0, 1.0, 1.0);
 	}
 	
 	if ( CGRectIntersectsRect( CGRectMake(cursor.x-20, cursor.y-20, 40, 40), CGRectMake(x0,y3,x6-x0,0) ) ) {
-		CGContextSetRGBStrokeColor(c, 1.0, 0.0, 0.0, 1);
+		drawMarker(c, cursor, 16, 1.0, 1.0, 0.0, 0.0, 1.0);
 	} else {
-		CGContextSetRGBStrokeColor(c, 1.0, 1.0, 0.0, 1);
+		drawMarker(c, cursor, 16, 1.0, 1.0, 1.0, 0.0, 1.0);
 	}
-	CGContextSetLineWidth(c, 0.5);
-	CGContextMoveToPoint(c, cursor.x-25, cursor.y-25);
-	CGContextAddLineToPoint(c, cursor.x+25, cursor.y+25);
-	CGContextMoveToPoint(c, cursor.x-25, cursor.y+25);
-	CGContextAddLineToPoint(c, cursor.x+25, cursor.y-25);
-	CGContextMoveToPoint(c, cursor.x, cursor.y);
-	CGContextStrokePath(c);
-//	CGContextStrokeEllipseInRect(c, CGRectMake(cursor.x-20, cursor.y-20, 40, 40));
-	CGContextStrokePath(c);
-	
 
 	//return;
 	
