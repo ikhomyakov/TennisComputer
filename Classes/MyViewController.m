@@ -135,28 +135,32 @@
 	 NSLog(@"=== MyViewController.viewDidLoad");
 	 [super viewDidLoad];
 	 
-/*
+
 	 [self setMotionManager:[[CMMotionManager alloc] init]];
-	 motionManager.gyroUpdateInterval = 1.0/1.0;
-	 if (motionManager.gyroAvailable && NO) {		 
+	 motionManager.gyroUpdateInterval = 1.0/10.0;
+	 if (motionManager.gyroAvailable) {		 
 		 [motionManager startGyroUpdatesToQueue: [[NSOperationQueue currentQueue] retain] withHandler: ^ (CMGyroData *gyroData, NSError *error) {
-			 CMRotationRate r = gyroData.rotationRate;
+			 CMRotationRate r = [gyroData rotationRate];
 			 NSLog(@"=== CMGyro: x=%f, y=%f, z=%f",r.x, r.y, r.z);
+			 [[self view] setRotationRate:r withTimestamp:[gyroData timestamp]];
+			 [[self view] setNeedsDisplay];
 		 } ];
 	 } else {
 		 NSLog(@"No gyroscope on device.");
 	 }
 
 	if (motionManager.accelerometerAvailable) {
-		motionManager.accelerometerUpdateInterval = 1.0/60.0;
+		motionManager.accelerometerUpdateInterval = 1.0/10.0;
 		[motionManager startAccelerometerUpdatesToQueue:[[NSOperationQueue currentQueue] retain] withHandler: ^ (CMAccelerometerData *acceData, NSError *error) {
-			CMAcceleration a = acceData.acceleration;
+			CMAcceleration a = [acceData acceleration];
 			NSLog(@"=== CMAcce: x=%f, y=%f, z=%f",a.x, a.y, a.z);
+			[[self view] setAcceleration:a withTimestamp:[acceData timestamp]];
+			[[self view] setNeedsDisplay];
 		} ];
 	} else {
 		NSLog(@"No accelerometer on device.");
 	}
-*/
+
  
 	
 }

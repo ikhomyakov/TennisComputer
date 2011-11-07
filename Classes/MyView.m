@@ -52,11 +52,21 @@ void drawMarker(CGContextRef c, CGPoint p, CGFloat markerSize, CGFloat lineWidth
 @synthesize stroke;
 
 
-
 - (id)initWithFrame:(CGRect)aRect {
 	self = [super initWithFrame:aRect];
 	if (self) {
 		[self setStroke:[NSMutableArray arrayWithCapacity: 100]];
+		rotationRate.x = 0.0;
+		rotationRate.y = 0.0;
+		rotationRate.z = 0.0;
+		acceleration.x = 0.0;
+		acceleration.y = 0.0;
+		acceleration.z = 0.0;		
+		maxAcceleration = 0.0;
+		maxRotationRate = 0.0;
+		minAcceleration = 0.0;
+		minRotationRate = 0.0;
+
 	}
 	return self;
 }
@@ -64,6 +74,60 @@ void drawMarker(CGContextRef c, CGPoint p, CGFloat markerSize, CGFloat lineWidth
 
 -(void)setCursor:(CGPoint)c {
 	cursor = c;
+}
+
+-(void)setRotationRate:(CMRotationRate)r withTimestamp:(NSTimeInterval)t {
+	if (r.x>maxRotationRate) {
+		maxRotationRate = r.x;
+	}
+	if (r.x<minRotationRate) {
+		minRotationRate = r.x;
+	}
+	if (r.y>maxRotationRate) {
+		maxRotationRate = r.y;
+	}
+	if (r.y<minRotationRate) {
+		minRotationRate = r.y;
+	}
+	if (r.z>maxRotationRate) {
+		maxRotationRate = r.z;
+	}
+	if (r.z<minRotationRate) {
+		minRotationRate = r.z;
+	}
+	rotationRate = r;
+	rotationRateTimestamp = t;
+}
+
+-(CMRotationRate)rotationRate {
+	return rotationRate;
+}
+
+-(void)setAcceleration:(CMAcceleration)a withTimestamp:(NSTimeInterval)t {
+	if (a.x>maxAcceleration) {
+		maxAcceleration = a.x;
+	}
+	if (a.x<minAcceleration) {
+		minAcceleration = a.x;
+	}
+	if (a.y>maxAcceleration) {
+		maxAcceleration = a.y;
+	}
+	if (a.y<minAcceleration) {
+		minAcceleration = a.y;
+	}
+	if (a.z>maxAcceleration) {
+		maxAcceleration = a.z;
+	}
+	if (a.z<minAcceleration) {
+		minAcceleration = a.z;
+	}
+	acceleration = a;
+	accelerationTimestamp = t;
+}
+
+-(CMAcceleration)acceleration {
+	return acceleration;
 }
 
 
@@ -99,7 +163,9 @@ void drawMarker(CGContextRef c, CGPoint p, CGFloat markerSize, CGFloat lineWidth
 	CGFloat y4 = y3 + h/uh * 21.0;
 	CGFloat y5 = y4 + h/uh * 18.0;
 	CGFloat y6 = y5 + h/uh * (21.0-10.0);
-	
+
+#if 1
+
 	CGContextSetRGBFillColor(c, 78/256.0, 29/256.0, 144/256.0, 1.0);	
 	CGContextAddRect(c,CGRectMake(x0,y0,x6-x0,y6-y0));
 	CGContextFillPath(c);
@@ -189,15 +255,43 @@ void drawMarker(CGContextRef c, CGPoint p, CGFloat markerSize, CGFloat lineWidth
 				@"OV"
 			)
 		 );
-		
-	/*
-	slice	flat	topspin	slice lob	topspin lob
-	END 0..60	END 60..90	END 90..150	END 150
+
+#endif
 	
-	ground	    volley	    half volley	overhead	
-	BEG 60..120	BEG 0..45	BEG 45..60	BEG 120..180	
-	*/
+	
+
+
+#if 1	
 		
+	maxAcceleration=  1.0;
+	minAcceleration= -1.0;
+	maxRotationRate=  20.0;
+	minRotationRate= -20.0;
+	
+	CGContextSetRGBStrokeColor(c, 1, 1, 1, 1);
+
+//	CGContextSetRGBFillColor(c, 0, 0, 0, 1);
+//	CGContextFillRect(c, CGRectMake(0,0,w,h));
+
+	CGContextSetRGBFillColor(c, 1, 0, 0, 0.5);
+	CGContextFillRect(c, CGRectMake(0*w/6, h/2, w/6, (CGFloat)((acceleration.x) * h / (maxAcceleration-minAcceleration)) ));
+	CGContextSetRGBFillColor(c, 1, 0, 0, 0.3);
+	CGContextFillRect(c, CGRectMake(1*w/6, h/2, w/6, (CGFloat)((acceleration.y) * h / (maxAcceleration-minAcceleration)) ));
+	CGContextSetRGBFillColor(c, 1, 0, 0, 0.15);
+	CGContextFillRect(c, CGRectMake(2*w/6, h/2, w/6, (CGFloat)((acceleration.z) * h / (maxAcceleration-minAcceleration)) ));
+	
+	CGContextSetRGBFillColor(c, 0, 1, 0, 0.5);
+	CGContextFillRect(c, CGRectMake(3*w/6, h/2, w/6, (CGFloat)((rotationRate.x) * h / (maxRotationRate-minRotationRate)) ));
+	CGContextSetRGBFillColor(c, 0, 1, 0, 0.3);
+	CGContextFillRect(c, CGRectMake(4*w/6, h/2, w/6, (CGFloat)((rotationRate.y) * h / (maxRotationRate-minRotationRate)) ));
+	CGContextSetRGBFillColor(c, 0, 1, 0, 0.15);
+	CGContextFillRect(c, CGRectMake(5*w/6, h/2, w/6, (CGFloat)((rotationRate.z) * h / (maxRotationRate-minRotationRate)) ));
+	
+	CGContextStrokePath(c);
+#endif
+
+
+#if 1
 	
 	CGContextTranslateCTM(c, 0, h);
 	CGContextScaleCTM(c, 1, -1);
@@ -212,14 +306,20 @@ void drawMarker(CGContextRef c, CGPoint p, CGFloat markerSize, CGFloat lineWidth
 	t =  CGAffineTransformMake(1,0,0,1,0,0);
 	CGContextSetTextMatrix(c, t);
 	
+	
 	//CGContextShowTextAtPoint(c, 43, 30, "MIDLAND PARK", 12);
 	NSString* scount = [NSString stringWithFormat:@"%s %s|%d|%.0f|%.0f|%.2f|", 
 						[f1 cStringUsingEncoding:NSUTF8StringEncoding], [f2 cStringUsingEncoding:NSUTF8StringEncoding], [stroke count], 
-		/* (cursor.x)*uw/w, (cursor.y)*uh/h,*/
-		a1, a2, sqrt( pow((cursor.x-s.x)*uw/w,2.0)+pow((cursor.y-s.y)*uh/h,2.0) )];
-	CGContextShowTextAtPoint(c, 10, 25, [scount cStringUsingEncoding:NSUTF8StringEncoding], [scount length]);
-
+						/* (cursor.x)*uw/w, (cursor.y)*uh/h,*/
+						a1, a2, sqrt( pow((cursor.x-s.x)*uw/w,2.0)+pow((cursor.y-s.y)*uh/h,2.0) )];
+	CGContextShowTextAtPoint(c, 10, 30, [scount cStringUsingEncoding:NSUTF8StringEncoding], [scount length]);
 	
+	NSString* smotion = [NSString stringWithFormat:@"% 5.3f % 5.3f % 5.3f   % 5.3f % 5.3f % 5.3f", acceleration.x, acceleration.y, acceleration.z, 
+						 rotationRate.x, rotationRate.y, rotationRate.z];
+	CGContextShowTextAtPoint(c, 10, 60, [smotion cStringUsingEncoding:NSUTF8StringEncoding], [smotion length]);
+#endif
+	
+
 }
 
 
